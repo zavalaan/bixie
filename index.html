@@ -178,6 +178,112 @@
   .validity .lbl { font-size: 10px; text-transform: uppercase; letter-spacing: 2px; color: var(--text-light); display: block; margin-bottom: 2px; text-align: right; }
   .validity .val { font-size: 13px; font-weight: 500; color: var(--rose); }
 
+  /* ===== RESPONSIVE — TABLET ===== */
+  @media (max-width: 720px) {
+    .header { padding: 32px 32px 28px; }
+    .section { padding: 28px 32px; }
+    .firma-section { padding: 28px 32px; }
+    .footer { padding: 24px 32px; }
+  }
+
+  /* ===== RESPONSIVE — MÓVIL ===== */
+  @media (max-width: 560px) {
+    .print-bar { padding: 12px 16px; flex-wrap: wrap; gap: 10px; }
+    .print-bar p { font-size: 11px; }
+    .btn-pdf { padding: 9px 18px; font-size: 12px; }
+
+    /* Header apilado */
+    .header { flex-direction: column; align-items: flex-start; gap: 18px; padding: 28px 20px 24px; }
+    .header-left { gap: 16px; }
+    .logo-ring { width: 60px; height: 60px; }
+    .logo-placeholder { font-size: 18px; }
+    .client-block h1 { font-size: 24px; }
+    .header-right { text-align: left; width: 100%; }
+    .from-block { text-align: left; margin-top: 14px; }
+    .cotizacion-id { font-size: 24px; }
+
+    /* Secciones */
+    .section { padding: 26px 20px; }
+    .firma-section { padding: 26px 20px; }
+    .footer { padding: 24px 20px; flex-direction: column; align-items: flex-start; gap: 14px; }
+    .validity .lbl, .validity .val { text-align: left; }
+
+    /* Grids de 2 columnas → 1 columna */
+    .vs-grid,
+    .scope-cols,
+    .pagos-grid,
+    .hosting-grid,
+    .ventajas-grid,
+    .contact-grid,
+    .firma-grid { grid-template-columns: 1fr !important; gap: 14px; }
+
+    .firma-grid { gap: 24px; }
+
+    /* Bloques con grids inline (garantía y nombre/fecha de firma) */
+    .firma-section > div[style*="grid-template-columns"],
+    .scope-box > div[style*="grid-template-columns"] { grid-template-columns: 1fr !important; gap: 18px !important; }
+
+    /* Tabla de servicios → tarjetas apiladas */
+    .service-table thead { display: none; }
+    .service-table,
+    .service-table tbody,
+    .service-table tr,
+    .service-table td { display: block; width: 100%; }
+    .service-table tbody tr {
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 16px;
+      margin-bottom: 14px;
+    }
+    .service-table tbody tr:last-child { margin-bottom: 0; }
+    .service-table td { padding: 0; text-align: left !important; }
+    .service-table td:last-child,
+    .service-table td:nth-last-child(2),
+    .service-table td:nth-last-child(3) { text-align: left !important; }
+    /* Fila de precios al pie de cada tarjeta */
+    .service-table td:not(:first-child) {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      margin-top: 10px;
+      margin-right: 16px;
+      font-size: 13px;
+    }
+    .service-table td:not(:first-child)::before {
+      content: attr(data-label);
+      font-size: 9px;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: var(--text-light);
+    }
+    .price-final { font-size: 15px; }
+
+    /* Flujo WhatsApp en vertical */
+    .wa-steps { flex-direction: column; align-items: stretch; gap: 4px; }
+    .wa-step { flex-direction: row; align-items: center; gap: 10px; text-align: left; }
+    .wa-step-label { text-align: left; font-size: 11px; }
+    .wa-arrow { transform: rotate(90deg); margin: 2px 0 2px 12px; padding-bottom: 0; align-self: flex-start; }
+
+    /* Timeline más compacto */
+    .tl-name { font-size: 10px; }
+    .tl-sub { font-size: 9px; }
+    .tl-dot { width: 32px; height: 32px; }
+    .tl-step::before, .tl-step::after { top: 16px; }
+
+    /* Totales a ancho completo */
+    .totales-box { max-width: 100%; margin-left: 0; }
+
+    /* Diagnóstico/scope tipografía */
+    .service-desc, .vs-list li { font-size: 12px; }
+  }
+
+  /* ===== RESPONSIVE — MÓVIL ESTRECHO ===== */
+  @media (max-width: 380px) {
+    .client-block h1 { font-size: 21px; }
+    .pago-amount { font-size: 26px; }
+    .section-label { letter-spacing: 2px; }
+  }
+
   @media print {
     body { background: #fff; }
     .print-bar { display: none !important; }
@@ -262,9 +368,9 @@
             <div class="service-desc">Diseño y desarrollo de landing page personalizada con la identidad de Bixie. Incluye inicio, catálogo público, contacto, SEO básico y optimización móvil. Compatible con WhatsApp Business y redes sociales.</div>
             <br><span class="badge-free">Incluido sin costo</span>
           </td>
-          <td><span class="strike">$12,000</span></td>
-          <td style="color: var(--green-text); font-size: 12px; font-weight: 500;">−100%</td>
-          <td>
+          <td data-label="Precio regular"><span class="strike">$12,000</span></td>
+          <td data-label="Descuento" style="color: var(--green-text); font-size: 12px; font-weight: 500;">−100%</td>
+          <td data-label="Total">
             <span class="price-final" style="color: var(--green-text);">$0.00</span>
             <div style="font-size: 10px; color: var(--green-text); margin-top: 2px;">Sin costo</div>
           </td>
@@ -299,9 +405,9 @@
             </div>
             <br><span class="badge-discount">Precio especial</span>
           </td>
-          <td><span class="strike">$15,000</span></td>
-          <td style="color: var(--rose); font-size: 12px; font-weight: 500;">−43%</td>
-          <td><span class="price-final">$8,500</span></td>
+          <td data-label="Precio regular"><span class="strike">$15,000</span></td>
+          <td data-label="Descuento" style="color: var(--rose); font-size: 12px; font-weight: 500;">−43%</td>
+          <td data-label="Total"><span class="price-final">$8,500</span></td>
         </tr>
         <tr>
           <td>
@@ -309,9 +415,9 @@
             <div class="service-desc">Alojamiento web, certificado SSL, dominio de primer nivel (.com o .mx) y configuración del servidor durante el primer año completo del proyecto.</div>
             <br><span class="badge-free">A cuenta de bit3io</span>
           </td>
-          <td><span class="strike">~$1,800</span></td>
-          <td style="color: var(--green-text); font-size: 12px; font-weight: 500;">−100%</td>
-          <td>
+          <td data-label="Precio regular"><span class="strike">~$1,800</span></td>
+          <td data-label="Descuento" style="color: var(--green-text); font-size: 12px; font-weight: 500;">−100%</td>
+          <td data-label="Total">
             <span class="price-final" style="color: var(--green-text);">$0.00</span>
             <div style="font-size: 10px; color: var(--green-text); margin-top: 2px;">Sin costo año 1</div>
           </td>
